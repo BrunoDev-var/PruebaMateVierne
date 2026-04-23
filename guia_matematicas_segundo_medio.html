@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía Completa Matemáticas - Segundo Medio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+.math-box { font-family: 'JetBrains Mono', monospace; }
+.fraction { display: inline-block; text-align: center; vertical-align: middle; margin: 0 0.2rem; }
+.fraction .top { display: block; border-bottom: 2px solid #1e293b; padding: 0 0.3rem; }
+.fraction .bottom { display: block; padding: 0 0.3rem; }
+.radical { display: inline-flex; align-items: baseline; }
+.radical-index { font-size: 0.6em; margin-right: 2px; }
+.radical-symbol { font-size: 1.2em; }
+.hidden-section { display: none; }
+.visible-section { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.step-card { transition: all 0.3s ease; }
+.step-card:hover { transform: translateY(-2px); box-shadow: 0 10px 40px -10px rgba(0,0,0,0.15); }
+.highlight-box { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-left: 4px solid #2563eb; }
+.warning-box { background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); border-left: 4px solid #f97316; }
+.success-box { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-left: 4px solid #22c55e; }
+.danger-box { background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-left: 4px solid #ef4444; }
+.mora-box { background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%); border: 2px solid #c026d3; border-radius: 12px; }
+.tab-active { background: #2563eb; color: white; }
+.tab-inactive { background: #f1f5f9; color: #475569; }
+.tab-inactive:hover { background: #e2e8f0; }
+.example-work { background: #f8fafc; border-radius: 8px; padding: 1rem; margin: 0.5rem 0; }
+.sticky-nav { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(12px); background: rgba(255,255,255,0.95); }
+body { scroll-behavior: smooth; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+
+<header class="bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-white py-12 px-4">
+<div class="max-w-6xl mx-auto">
+<div class="flex items-center gap-3 mb-4">
+<span class="bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Segundo Medio</span>
+<span class="bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Preparación Examen</span>
+</div>
+<h1 class="text-4xl md:text-6xl font-black mb-4 leading-tight">Guía Completa de<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-orange-400">Matemáticas</span></h1>
+<p class="text-slate-300 text-lg md:text-xl max-w-2xl mb-6">Números Racionales · Potencias · Raíces · Operaciones Mixtas · Racionalización</p>
+<div class="flex flex-wrap gap-4 text-sm">
+<div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg backdrop-blur"><i class="fas fa-clock text-orange-400"></i><span>Tiempo estimado: 45 min</span></div>
+<div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg backdrop-blur"><i class="fas fa-book text-blue-400"></i><span>7 Guías de Trabajo</span></div>
+<div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg backdrop-blur"><i class="fas fa-star text-yellow-400"></i><span>Nivel: Completo</span></div>
+</div>
+</div>
+</header>
+
+<nav class="sticky-nav border-b border-slate-200 py-3 px-4 shadow-sm">
+<div class="max-w-6xl mx-auto flex flex-wrap gap-2 justify-center">
+<button onclick="showSection('racionales')" class="nav-btn tab-active px-4 py-2 rounded-lg font-semibold text-sm transition-all" data-section="racionales">Racionales</button>
+<button onclick="showSection('potencias')" class="nav-btn tab-inactive px-4 py-2 rounded-lg font-semibold text-sm transition-all" data-section="potencias">Potencias</button>
+<button onclick="showSection('raices')" class="nav-btn tab-inactive px-4 py-2 rounded-lg font-semibold text-sm transition-all" data-section="raices">Raíces</button>
+<button onclick="showSection('mixtas')" class="nav-btn tab-inactive px-4 py-2 rounded-lg font-semibold text-sm transition-all" data-section="mixtas">Operaciones Mixtas</button>
+<button onclick="showSection('lenguaje')" class="nav-btn tab-inactive px-4 py-2 rounded-lg font-semibold text-sm transition-all" data-section="lenguaje">Lenguaje a Álgebra</button>
+<button onclick="showSection('racionalizacion')" class="nav-btn tab-inactive px-4 py-2 rounded-lg font-semibold text-sm transition-all" data-section="racionalizacion">Racionalización</button>
+<button onclick="showSection('practica')" class="nav-btn tab-inactive px-4 py-2 rounded-lg font-semibold text-sm transition-all" data-section="practica">Práctica Rápida</button>
+</div>
+</nav>
+
+<main class="max-w-6xl mx-auto px-4 py-8">
+
+<!-- RACIONALES -->
+<section id="racionales" class="visible-section">
+<div class="mb-8">
+<h2 class="text-3xl font-bold text-slate-900 mb-2">1. Números Racionales (ℚ)</h2>
+<p class="text-slate-600">Fracciones, decimales y operaciones básicas.</p>
+</div>
+
+<div class="highlight-box rounded-xl p-6 mb-6">
+<h3 class="text-lg font-bold text-blue-800 mb-3"><i class="fas fa-lightbulb text-blue-500 mr-2"></i>Definición Clave</h3>
+<p class="text-slate-700 mb-4">Los números racionales se representan como <span class="fraction"><span class="top">m</span><span class="bottom">n</span></span> donde m y n son enteros, n ≠ 0.</p>
+<div class="grid md:grid-cols-2 gap-4">
+<div class="bg-white rounded-lg p-4 border border-blue-200">
+<strong class="text-blue-700">Ejemplos:</strong>
+<ul class="mt-2 space-y-1 text-sm text-slate-600">
+<li>• <span class="fraction"><span class="top">3</span><span class="bottom">4</span></span>, <span class="fraction"><span class="top">-5</span><span class="bottom">2</span></span>, 0.75, -1.2</li>
+<li>• Todos los enteros son racionales (5 = <span class="fraction"><span class="top">5</span><span class="bottom">1</span></span>)</li>
+</ul>
+</div>
+<div class="bg-white rounded-lg p-4 border border-blue-200">
+<strong class="text-blue-700">Decimales periódicos:</strong>
+<ul class="mt-2 space-y-1 text-sm text-slate-600">
+<li>• 0.333... = <span class="fraction"><span class="top">1</span><span class="bottom">3</span></span></li>
+<li>• 0.1̄ = <span class="fraction"><span class="top">1</span><span class="bottom">9</span></span></li>
+<li>• 0.̄7 = <span class="fraction"><span class="top">7</span><span class="bottom">9</span></span></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="grid md:grid-cols-2 gap-6 mb-8">
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 step-card">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600"><i class="fas fa-plus-minus"></i></div>
+<h3 class="font-bold text-lg">Suma y Resta</h3>
+</div>
+<p class="text-sm text-slate-600 mb-4">Necesitan <strong>común denominador</strong>.</p>
+<div class="example-work">
+<p class="text-xs text-slate-500 uppercase font-bold mb-2">Ejemplo</p>
+<div class="math-box text-sm"><span class="fraction"><span class="top">2</span><span class="bottom">3</span></span> + <span class="fraction"><span class="top">1</span><span class="bottom">4</span></span> = <span class="fraction"><span class="top">8</span><span class="bottom">12</span></span> + <span class="fraction"><span class="top">3</span><span class="bottom">12</span></span> = <span class="fraction"><span class="top">11</span><span class="bottom">12</span></span></div>
+<p class="text-xs text-slate-500 mt-2">mcm(3,4) = 12</p>
+</div>
+<div class="warning-box rounded-lg p-3 mt-4">
+<p class="text-sm font-semibold text-orange-800"><i class="fas fa-exclamation-triangle mr-2"></i>ERROR COMÚN</p>
+<p class="text-sm text-orange-700 mt-1">NO sumar directamente: <span class="fraction"><span class="top">2</span><span class="bottom">3</span></span> + <span class="fraction"><span class="top">1</span><span class="bottom">4</span></span> ≠ <span class="fraction"><span class="top">3</span><span class="bottom">7</span></span></p>
+</div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 step-card">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600"><i class="fas fa-times"></i></div>
+<h3 class="font-bold text-lg">Multiplicación y División</h3>
+</div>
+<p class="text-sm text-slate-600 mb-4">Multiplicación: num×num / den×den. ¡Simplificar antes!</p>
+<div class="example-work">
+<p class="text-xs text-slate-500 uppercase font-bold mb-2">Multiplicación</p>
+<div class="math-box text-sm"><span class="fraction"><span class="top">2</span><span class="bottom">3</span></span> × <span class="fraction"><span class="top">9</span><span class="bottom">4</span></span> = <span class="fraction"><span class="top">1</span><span class="bottom">1</span></span> × <span class="fraction"><span class="top">3</span><span class="bottom">2</span></span> = <span class="fraction"><span class="top">3</span><span class="bottom">2</span></span></div>
+</div>
+<div class="example-work mt-3">
+<p class="text-xs text-slate-500 uppercase font-bold mb-2">División</p>
+<div class="math-box text-sm"><span class="fraction"><span class="top">2</span><span class="bottom">3</span></span> ÷ <span class="fraction"><span class="top">4</span><span class="bottom">5</span></span> = <span class="fraction"><span class="top">2</span><span class="bottom">3</span></span> × <span class="fraction"><span class="top">5</span><span class="bottom">4</span></span> = <span class="fraction"><span class="top">5</span><span class="bottom">6</span></span></div>
+<p class="text-xs text-slate-500 mt-2">Multiplicar por el <strong>recíproco</strong></p>
+</div>
+</div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+<h3 class="font-bold text-lg mb-4"><i class="fas fa-exchange-alt text-orange-500 mr-2"></i>Conversión Decimal ↔ Fracción</h3>
+<div class="grid md:grid-cols-3 gap-4">
+<div class="bg-slate-50 rounded-lg p-4">
+<p class="font-semibold text-sm mb-2">Decimal exacto</p>
+<p class="text-sm text-slate-600">0.3 = <span class="fraction"><span class="top">3</span><span class="bottom">10</span></span></p>
+<p class="text-sm text-slate-600">0.25 = <span class="fraction"><span class="top">1</span><span class="bottom">4</span></span></p>
+</div>
+<div class="bg-slate-50 rounded-lg p-4">
+<p class="font-semibold text-sm mb-2">Periódico simple</p>
+<p class="text-sm text-slate-600">0.̄3 = <span class="fraction"><span class="top">1</span><span class="bottom">3</span></span></p>
+<p class="text-sm text-slate-600">0.̄7 = <span class="fraction"><span class="top">7</span><span class="bottom">9</span></span></p>
+</div>
+<div class="bg-slate-50 rounded-lg p-4">
+<p class="font-semibold text-sm mb-2">Periódico compuesto</p>
+<p class="text-sm text-slate-600">0.1̄6 = <span class="fraction"><span class="top">1</span><span class="bottom">6</span></span></p>
+</div>
+</div>
+</div>
+
+<div class="success-box rounded-xl p-6">
+<h3 class="font-bold text-lg mb-3 text-green-800"><i class="fas fa-calculator mr-2"></i>Reglas de Signos</h3>
+<div class="grid md:grid-cols-2 gap-4 text-sm">
+<div>
+<p class="font-semibold mb-2">Multiplicación/División:</p>
+<ul class="space-y-1 text-slate-700">
+<li>(+) × (+) = (+) · (-) × (-) = (+)</li>
+<li>(+) × (-) = (-) · (-) × (+) = (-)</li>
+</ul>
+</div>
+<div>
+<p class="font-semibold mb-2">Suma/Resta (mismo signo):</p>
+<ul class="space-y-1 text-slate-700">
+<li>Sumar valores, conservar signo</li>
+<li>Ej: (-3) + (-5) = -8</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- POTENCIAS -->
+<section id="potencias" class="hidden-section">
+<div class="mb-8">
+<h2 class="text-3xl font-bold text-slate-900 mb-2">2. Potencias y Propiedades</h2>
+<p class="text-slate-600">Domina las leyes de exponentes.</p>
+</div>
+
+<div class="highlight-box rounded-xl p-6 mb-6">
+<h3 class="text-lg font-bold text-blue-800 mb-3">Definición</h3>
+<p class="text-slate-700">a<sup>n</sup> = a × a × ... × a (n veces)</p>
+<p class="text-sm text-slate-600 mt-2"><strong>a</strong> = base, <strong>n</strong> = exponente</p>
+</div>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 step-card">
+<div class="text-2xl font-black text-blue-600 mb-2">a<sup>m</sup> · a<sup>n</sup></div>
+<p class="text-sm text-slate-600 mb-3">Misma base</p>
+<div class="bg-blue-50 rounded-lg p-3 text-center font-mono font-bold text-blue-800">= a<sup>m+n</sup></div>
+<p class="text-xs text-slate-500 mt-2">Ej: 2³ · 2² = 2<sup>5</sup> = 32</p>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 step-card">
+<div class="text-2xl font-black text-purple-600 mb-2">a<sup>m</sup> ÷ a<sup>n</sup></div>
+<p class="text-sm text-slate-600 mb-3">Misma base</p>
+<div class="bg-purple-50 rounded-lg p-3 text-center font-mono font-bold text-purple-800">= a<sup>m-n</sup></div>
+<p class="text-xs text-slate-500 mt-2">Ej: 5<sup>4</sup> ÷ 5² = 25</p>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 step-card">
+<div class="text-2xl font-black text-orange-600 mb-2">(a<sup>m</sup>)<sup>n</sup></div>
+<p class="text-sm text-slate-600 mb-3">Potencia de potencia</p>
+<div class="bg-orange-50 rounded-lg p-3 text-center font-mono font-bold text-orange-800">= a<sup>m·n</sup></div>
+<p class="text-xs text-slate-500 mt-2">Ej: (2³)² = 2<sup>6</sup> = 64</p>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 step-card">
+<div class="text-2xl font-black text-green-600 mb-2">a<sup>m</sup> · b<sup>m</sup></div>
+<p class="text-sm text-slate-600 mb-3">Mismo exponente</p>
+<div class="bg-green-50 rounded-lg p-3 text-center font-mono font-bold text-green-800">= (a·b)<sup>m</sup></div>
+<p class="text-xs text-slate-500 mt-2">Ej: 2³ · 5³ = 10³</p>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 step-card">
+<div class="text-2xl font-black text-yellow-600 mb-2">a<sup>m</sup> ÷ b<sup>m</sup></div>
+<p class="text-sm text-slate-600 mb-3">Mismo exponente</p>
+<div class="bg-yellow-50 rounded-lg p-3 text-center font-mono font-bold text-yellow-800">= (a÷b)<sup>m</sup></div>
+<p class="text-xs text-slate-500 mt-2">Ej: 6³ ÷ 2³ = 3³</p>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 step-card">
+<div class="text-2xl font-black text-red-600 mb-2">Especiales</div>
+<p class="text-sm text-slate-600 mb-3">Valores clave</p>
+<div class="bg-red-50 rounded-lg p-3 text-sm font-mono text-red-800 space-y-1">
+<div>a<sup>0</sup> = 1 (a≠0)</div>
+<div>a<sup>1</sup> = a</div>
+<div>a<sup>-n</sup> = 1/a<sup>n</sup></div>
+</div>
+</div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+<h3 class="font-bold text-lg mb-4"><i class="fas fa-graduation-cap text-blue-500 mr-2"></i>Ejemplo: Expresar como única potencia</h3>
+<div class="space-y-4">
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-sm shrink-0">1</div>
+<div><p class="font-semibold">Ejercicio:</p><p class="math-box text-lg">64 · 64 · 16</p></div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-sm shrink-0">2</div>
+<div><p class="font-semibold">Base común:</p><p class="text-slate-600">64 = 4³, 16 = 4²</p></div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-sm shrink-0">3</div>
+<div><p class="font-semibold">Resolver:</p><p class="math-box">4³ · 4³ · 4² = 4<sup>(3+3+2)</sup> = <strong>4<sup>8</sup></strong></p></div>
+</div>
+</div>
+</div>
+
+<div class="warning-box rounded-xl p-6">
+<h3 class="font-bold text-lg mb-3 text-orange-800"><i class="fas fa-check-double mr-2"></i>Verdadero o Falso</h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between bg-white rounded-lg p-3">
+<span class="font-mono">(a³)² = a<sup>6</sup></span>
+<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">VERDADERO</span>
+</div>
+<div class="flex items-center justify-between bg-white rounded-lg p-3">
+<span class="font-mono">a³ · a² = a<sup>6</sup></span>
+<span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-bold">FALSO → a<sup>5</sup></span>
+</div>
+<div class="flex items-center justify-between bg-white rounded-lg p-3">
+<span class="font-mono">(a·b)³ = a³ · b³</span>
+<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">VERDADERO</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- RAÍCES -->
+<section id="raices" class="hidden-section">
+<div class="mb-8">
+<h2 class="text-3xl font-bold text-slate-900 mb-2">3. Raíces y Números Reales</h2>
+<p class="text-slate-600">De la raíz cuadrada hasta la simplificación completa.</p>
+</div>
+
+<div class="highlight-box rounded-xl p-6 mb-6">
+<h3 class="text-lg font-bold text-blue-800 mb-3">Relación Fundamental</h3>
+<div class="grid md:grid-cols-2 gap-6 items-center">
+<div class="text-center">
+<p class="text-3xl font-black text-blue-700 mb-2">a<sup>m/n</sup> = <span class="radical"><span class="radical-index">n</span><span class="radical-symbol">√</span></span>a<sup>m</sup></p>
+</div>
+<div class="text-center">
+<p class="text-3xl font-black text-purple-700 mb-2"><span class="radical"><span class="radical-index">n</span><span class="radical-symbol">√</span></span>a<sup>m</sup> = a<sup>m/n</sup></p>
+</div>
+</div>
+<div class="mt-4 bg-white rounded-lg p-4 border border-blue-200">
+<p class="text-sm"><strong>Vocabulario:</strong> En <span class="radical"><span class="radical-index">n</span><span class="radical-symbol">√</span></span>a, <strong>n</strong> = índice, <strong>a</strong> = cantidad subradical. Sin índice = 2.</p>
+</div>
+</div>
+
+<div class="grid md:grid-cols-2 gap-6 mb-8">
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+<h3 class="font-bold text-lg mb-4 text-blue-700">Producto (mismo índice)</h3>
+<div class="math-box text-xl text-center mb-4 bg-slate-50 rounded-lg p-4">
+<span class="radical"><span class="radical-index">n</span><span class="radical-symbol">√</span></span>a · <span class="radical"><span class="radical-index">n</span><span class="radical-symbol">√</span></span>b = <span class="radical"><span class="radical-index">n</span><span class="radical-symbol">√</span></span>(a·b)
+</div>
+<p class="text-sm text-slate-600">Ej: √2 · √8 = √16 = 4</p>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+<h3 class="font-bold text-lg mb-4 text-purple-700">Cociente (mismo índice)</h3>
+<div class="math-box text-xl text-center mb-4 bg-slate-50 rounded-lg p-4">
+<span class="radical"><span class="radical-index">n</span><span class="radical-symbol">√</span></span>a ÷ <span class="radical"><span class="radical-index">n</span><span class="radical-symbol">√</span></span>b = <span class="radical"><span class="radical-index">n</span><span class="radical-symbol">√</span></span>(a÷b)
+</div>
+<p class="text-sm text-slate-600">Ej: √18 ÷ √2 = √9 = 3</p>
+</div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+<h3 class="font-bold text-lg mb-4"><i class="fas fa-layer-group text-orange-500 mr-2"></i>Raíz de Raíz</h3>
+<div class="highlight-box rounded-lg p-4 mb-4">
+<p class="text-center text-xl font-mono font-bold text-blue-800">
+<span class="radical"><span class="radical-index">m</span><span class="radical-symbol">√</span></span>(<span class="radical"><span class="radical-index">n</span><span class="radical-symbol">√</span></span>a) = <span class="radical"><span class="radical-index">m·n</span><span class="radical-symbol">√</span></span>a
+</p>
+</div>
+<div class="example-work">
+<p class="font-semibold text-sm mb-2">Ejemplo:</p>
+<p class="math-box">√(√16) = <span class="radical"><span class="radical-index">4</span><span class="radical-symbol">√</span></span>16 = 2</p>
+</div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+<h3 class="font-bold text-lg mb-4"><i class="fas fa-compress-alt text-green-500 mr-2"></i>Simplificar Raíces</h3>
+<div class="grid md:grid-cols-2 gap-6">
+<div>
+<p class="text-sm text-slate-600 mb-3">Descomponer en factores primos:</p>
+<div class="example-work">
+<p class="font-semibold text-sm">√12 = ?</p>
+<p class="text-sm text-slate-600 mt-2">12 = 4 × 3 = 2² × 3</p>
+<p class="math-box mt-2">√12 = √4 · √3 = <strong>2√3</strong></p>
+</div>
+</div>
+<div>
+<p class="text-sm text-slate-600 mb-3">Índice mayor que 2:</p>
+<div class="example-work">
+<p class="font-semibold text-sm"><span class="radical"><span class="radical-index">3</span><span class="radical-symbol">√</span></span>32 = ?</p>
+<p class="text-sm text-slate-600 mt-2">32 = 8 × 4 = 2³ × 4</p>
+<p class="math-box mt-2">= 2·<span class="radical"><span class="radical-index">3</span><span class="radical-symbol">√</span></span>4</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="success-box rounded-xl p-6 mb-6">
+<h3 class="font-bold text-lg mb-3 text-green-800"><i class="fas fa-equals mr-2"></i>Raíces Semejantes</h3>
+<p class="text-slate-700 mb-4">Mismo índice y misma cantidad subradical.</p>
+<div class="bg-white rounded-lg p-4 border border-green-200">
+<p class="font-mono text-center text-lg mb-2">3√2 + 5√2 = 8√2</p>
+<p class="font-mono text-center text-lg">8√7 - √7 + 3√6 - 4√6 = 7√7 - √6</p>
+</div>
+</div>
+
+<div class="warning-box rounded-xl p-6">
+<h3 class="font-bold text-lg mb-3 text-orange-800"><i class="fas fa-exclamation-circle mr-2"></i>Restricción Importante</h3>
+<p class="text-slate-700 mb-3">Raíces de negativos con índices <strong>pares</strong> <span class="text-red-600 font-bold">NO están en ℝ</span>.</p>
+<div class="grid md:grid-cols-2 gap-4">
+<div class="bg-white rounded-lg p-3 border border-green-200">
+<p class="text-sm font-semibold text-green-700">✓ Válido:</p>
+<p class="text-sm"><span class="radical"><span class="radical-index">3</span><span class="radical-symbol">√</span></span>(-64) = -4</p>
+<p class="text-sm">√25 = 5</p>
+</div>
+<div class="bg-white rounded-lg p-3 border border-red-200">
+<p class="text-sm font-semibold text-red-700">✗ No válido:</p>
+<p class="text-sm">√(-16) → No existe en ℝ</p>
+<p class="text-sm"><span class="radical"><span class="radical-index">4</span><span class="radical-symbol">√</span></span>(-81) → No existe</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- OPERACIONES MIXTAS -->
+<section id="mixtas" class="hidden-section">
+<div class="mb-8">
+<h2 class="text-3xl font-bold text-slate-900 mb-2">4. Operaciones Mixtas con Racionales</h2>
+<p class="text-slate-600">Transformar todo a fracciones y respetar el orden.</p>
+</div>
+
+<div class="danger-box rounded-xl p-6 mb-6">
+<h3 class="font-bold text-lg mb-2 text-red-800"><i class="fas fa-fire mr-2"></i>PASO 0 (Obligatorio)</h3>
+<p class="text-red-700 font-semibold">Si hay fracciones y decimales, transformar TODOS los decimales a fracciones.</p>
+<div class="mt-3 bg-white rounded-lg p-3">
+<p class="text-sm">0.3 = <span class="fraction"><span class="top">3</span><span class="bottom">10</span></span> · 0.̄3 = <span class="fraction"><span class="top">1</span><span class="bottom">3</span></span> · 0.5 = <span class="fraction"><span class="top">1</span><span class="bottom">2</span></span></p>
+</div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-8">
+<h3 class="font-bold text-lg mb-4"><i class="fas fa-list-ol text-blue-500 mr-2"></i>Orden de Prioridad</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-blue-50 rounded-lg p-4 text-center border-2 border-blue-200">
+<div class="text-2xl font-black text-blue-700">1°</div>
+<p class="font-semibold text-sm mt-1">Paréntesis</p>
+</div>
+<div class="bg-purple-50 rounded-lg p-4 text-center border-2 border-purple-200">
+<div class="text-2xl font-black text-purple-700">2°</div>
+<p class="font-semibold text-sm mt-1">Potencias y Raíces</p>
+</div>
+<div class="bg-orange-50 rounded-lg p-4 text-center border-2 border-orange-200">
+<div class="text-2xl font-black text-orange-700">3°</div>
+<p class="font-semibold text-sm mt-1">Multiplicación/División</p>
+</div>
+<div class="bg-green-50 rounded-lg p-4 text-center border-2 border-green-200">
+<div class="text-2xl font-black text-green-700">4°</div>
+<p class="font-semibold text-sm mt-1">Suma y Resta</p>
+</div>
+</div>
+<p class="text-center text-sm text-slate-500 mt-4"><i class="fas fa-info-circle mr-1"></i> Mismo nivel: <strong>izquierda a derecha</strong></p>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+<h3 class="font-bold text-lg mb-4 text-slate-800">Ejemplo Completo Paso a Paso</h3>
+<div class="bg-slate-900 text-slate-100 rounded-xl p-6 font-mono text-sm md:text-base overflow-x-auto">
+<div class="mb-4 text-orange-400 font-bold">0.2 - 0.3 + (1/3 + 1) · 3 = ?</div>
+<div class="space-y-2">
+<div class="flex gap-3"><span class="text-slate-500 w-24 shrink-0">Paso 0:</span><span>= 1/5 - 3/10 + (1/3 + 1) · 3</span></div>
+<div class="flex gap-3"><span class="text-slate-500 w-24 shrink-0">Paréntesis:</span><span>= 1/5 - 3/10 + (4/3) · 3</span></div>
+<div class="flex gap-3"><span class="text-slate-500 w-24 shrink-0">Multiplicación:</span><span>= 1/5 - 3/10 + 4</span></div>
+<div class="flex gap-3"><span class="text-slate-500 w-24 shrink-0">Suma/Resta:</span><span>= 2/10 - 3/10 + 40/10 = 39/10</span></div>
+<div class="flex gap-3 text-green-400 font-bold"><span class="w-24 shrink-0">Resultado:</span><span>= 3.9 o 39/10</span></div>
+</div>
+</div>
+</div>
+
+<div class="mora-box rounded-xl p-6">
+<h3 class="font-bold text-xl mb-4 text-purple-800"><i class="fas fa-brain mr-2"></i>Estrategia MORA</h3>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-white rounded-lg p-4 shadow-sm">
+<div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-black text-xl mb-2">M</div>
+<p class="font-bold text-sm">Marcar datos</p>
+<p class="text-xs text-slate-600 mt-1">Subrayar lo relevante. Leer 2 veces.</p>
+</div>
+<div class="bg-white rounded-lg p-4 shadow-sm">
+<div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center text-purple-700 font-black text-xl mb-2">O</div>
+<p class="font-bold text-sm">Organizar</p>
+<p class="text-xs text-slate-600 mt-1">Ordenar los datos.</p>
+</div>
+<div class="bg-white rounded-lg p-4 shadow-sm">
+<div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-orange-700 font-black text-xl mb-2">R</div>
+<p class="font-bold text-sm">Resolver</p>
+<p class="text-xs text-slate-600 mt-1">Hacer los cálculos.</p>
+</div>
+<div class="bg-white rounded-lg p-4 shadow-sm">
+<div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-700 font-black text-xl mb-2">A</div>
+<p class="font-bold text-sm">Analizar</p>
+<p class="text-xs text-slate-600 mt-1">¿Tiene sentido?</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- LENGUAJE -->
+<section id="lenguaje" class="hidden-section">
+<div class="mb-8">
+<h2 class="text-3xl font-bold text-slate-900 mb-2">5. Lenguaje Natural a Álgebra</h2>
+<p class="text-slate-600">Traducir palabras a expresiones matemáticas.</p>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden mb-8">
+<div class="bg-blue-50 p-4 border-b border-blue-100">
+<h3 class="font-bold text-blue-800">Diccionario Algebraico</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm">
+<thead class="bg-slate-50 text-slate-700">
+<tr><th class="text-left p-3 font-semibold">Palabra/Frase</th><th class="text-left p-3 font-semibold">Traducción</th><th class="text-left p-3 font-semibold">Ejemplo</th></tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<tr><td class="p-3">El sucesor de n</td><td class="p-3 font-mono">n + 1</td><td class="p-3 text-slate-500">El siguiente número</td></tr>
+<tr class="bg-slate-50"><td class="p-3">El antecesor de n</td><td class="p-3 font-mono">n - 1</td><td class="p-3 text-slate-500">El anterior número</td></tr>
+<tr><td class="p-3">El doble de n</td><td class="p-3 font-mono">2n</td><td class="p-3 text-slate-500">2 × n</td></tr>
+<tr class="bg-slate-50"><td class="p-3">El triple de n</td><td class="p-3 font-mono">3n</td><td class="p-3 text-slate-500">3 × n</td></tr>
+<tr><td class="p-3">El cuadrado de n</td><td class="p-3 font-mono">n²</td><td class="p-3 text-slate-500">n al exponente 2</td></tr>
+<tr class="bg-slate-50"><td class="p-3">El cubo de n</td><td class="p-3 font-mono">n³</td><td class="p-3 text-slate-500">n al exponente 3</td></tr>
+<tr><td class="p-3">La mitad de n</td><td class="p-3 font-mono">n/2</td><td class="p-3 text-slate-500">n ÷ 2</td></tr>
+<tr class="bg-slate-50"><td class="p-3">n aumentado en 3</td><td class="p-3 font-mono">n + 3</td><td class="p-3 text-slate-500">Sumar 3</td></tr>
+<tr><td class="p-3">La diferencia entre a y b</td><td class="p-3 font-mono">a - b</td><td class="p-3 text-slate-500">Restar</td></tr>
+<tr class="bg-slate-50"><td class="p-3">El producto de a y b</td><td class="p-3 font-mono">a · b</td><td class="p-3 text-slate-500">Multiplicar</td></tr>
+<tr><td class="p-3">El cociente entre a y b</td><td class="p-3 font-mono">a/b</td><td class="p-3 text-slate-500">Dividir</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="grid md:grid-cols-2 gap-6">
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+<h3 class="font-bold text-lg mb-4 text-blue-700">Expresiones Compuestas</h3>
+<div class="space-y-4">
+<div class="example-work">
+<p class="text-sm font-semibold text-slate-700">"El doble del sucesor de n"</p>
+<p class="text-xs text-slate-500 mb-2">Primero sucesor, luego doble</p>
+<p class="font-mono text-blue-700">(n + 1) · 2 = 2(n+1)</p>
+</div>
+<div class="example-work">
+<p class="text-sm font-semibold text-slate-700">"El sucesor del triple de n"</p>
+<p class="font-mono text-blue-700">3n + 1</p>
+</div>
+<div class="example-work">
+<p class="text-sm font-semibold text-slate-700">"El cuadrado del antecesor del triple de n"</p>
+<p class="font-mono text-blue-700">(3n - 1)²</p>
+</div>
+</div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+<h3 class="font-bold text-lg mb-4 text-purple-700">Cálculo con Números</h3>
+<div class="space-y-4">
+<div class="example-work">
+<p class="text-sm font-semibold text-slate-700">"El cuadrado de 3 aumentado en 2"</p>
+<p class="font-mono text-purple-700">3² + 2 = 9 + 2 = 11</p>
+</div>
+<div class="example-work">
+<p class="text-sm font-semibold text-slate-700">"El cociente entre el cuadrado de 2 aumentado en 4 y 4"</p>
+<p class="font-mono text-purple-700">(2² + 4) ÷ 4 = 8 ÷ 4 = 2</p>
+</div>
+<div class="example-work">
+<p class="text-sm font-semibold text-slate-700">"El cubo del producto de 1/2 y 4"</p>
+<p class="font-mono text-purple-700">(1/2 · 4)³ = 2³ = 8</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- RACIONALIZACIÓN -->
+<section id="racionalizacion" class="hidden-section">
+<div class="mb-8">
+<h2 class="text-3xl font-bold text-slate-900 mb-2">6. Racionalización</h2>
+<p class="text-slate-600">Eliminar raíces del denominador.</p>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+<div class="flex items-center gap-3 mb-4">
+<span class="bg-blue-100 text-blue-700 font-bold px-3 py-1 rounded-full text-sm">Caso 1</span>
+<h3 class="font-bold text-lg">Denominador con raíz simple</h3>
+</div>
+<p class="text-slate-600 mb-4">Multiplicar numerador y denominador por la misma raíz.</p>
+<div class="bg-slate-50 rounded-lg p-4 mb-4">
+<p class="text-center text-lg font-mono mb-2"><span class="fraction"><span class="top">1</span><span class="bottom">√a</span></span> × <span class="fraction"><span class="top">√a</span><span class="bottom">√a</span></span> = <span class="fraction"><span class="top">√a</span><span class="bottom">a</span></span></p>
+</div>
+<div class="example-work">
+<p class="font-semibold text-sm mb-2">Ejemplo:</p>
+<p class="math-box">1/√7 = (1·√7)/(√7·√7) = √7/7</p>
+</div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+<div class="flex items-center gap-3 mb-4">
+<span class="bg-purple-100 text-purple-700 font-bold px-3 py-1 rounded-full text-sm">Caso 2</span>
+<h3 class="font-bold text-lg">Suma/resta de raíces</h3>
+</div>
+<p class="text-slate-600 mb-4">Usar el <strong>conjugado</strong>: cambiar el signo del segundo término.</p>
+<div class="bg-slate-50 rounded-lg p-4 mb-4">
+<p class="text-center text-lg font-mono mb-2"><span class="fraction"><span class="top">1</span><span class="bottom">√a + √b</span></span> × <span class="fraction"><span class="top">√a - √b</span><span class="bottom">√a - √b</span></span> = <span class="fraction"><span class="top">√a - √b</span><span class="bottom">a - b</span></span></p>
+</div>
+<p class="text-sm text-slate-500 mb-4">Recuerda: (√a + √b)(√a - √b) = a - b</p>
+<div class="example-work">
+<p class="font-semibold text-sm mb-2">Ejemplo paso a paso:</p>
+<div class="space-y-2 text-sm">
+<p>2/(√7 - 1) · (√7 + 1)/(√7 + 1)</p>
+<p>= 2(√7 + 1) / [(√7)² - (1)²]</p>
+<p>= 2(√7 + 1) / (7 - 1)</p>
+<p>= 2(√7 + 1) / 6</p>
+<p>= <strong>(√7 + 1) / 3</strong></p>
+</div>
+</div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
+<div class="flex items-center gap-3 mb-4">
+<span class="bg-orange-100 text-orange-700 font-bold px-3 py-1 rounded-full text-sm">Caso 3</span>
+<h3 class="font-bold text-lg">Raíz cúbica en denominador</h3>
+</div>
+<p class="text-slate-600 mb-4">Para <span class="radical"><span class="radical-index">3</span><span class="radical-symbol">√</span></span>a, multiplicar por <span class="radical"><span class="radical-index">3</span><span class="radical-symbol">√</span></span>a².</p>
+<div class="example-work">
+<p class="font-semibold text-sm mb-2">Ejemplo:</p>
+<p class="math-box">1/<span class="radical"><span class="radical-index">3</span><span class="radical-symbol">√</span></span>5 = <span class="radical"><span class="radical-index">3</span><span class="radical-symbol">√</span></span>25 / 5</p>
+</div>
+</div>
+
+<div class="danger-box rounded-xl p-6">
+<h3 class="font-bold text-lg mb-3 text-red-800"><i class="fas fa-times-circle mr-2"></i>Error Común</h3>
+<div class="bg-white rounded-lg p-4 border border-red-200">
+<p class="font-semibold text-red-700 mb-2">Racionalizar 1/(2√2):</p>
+<p class="text-sm text-slate-600 mb-2">Incorrecto: multiplicar solo por √2</p>
+<p class="text-sm text-slate-600">Correcto: √2/(2·2) = √2/4</p>
+</div>
+</div>
+</section>
+
+<!-- PRÁCTICA -->
+<section id="practica" class="hidden-section">
+<div class="mb-8">
+<h2 class="text-3xl font-bold text-slate-900 mb-2">7. Práctica Rápida para Mañana</h2>
+<p class="text-slate-600">Ejercicios tipo prueba con soluciones.</p>
+</div>
+
+<div class="grid md:grid-cols-2 gap-4 mb-8">
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+<div class="flex justify-between items-start mb-3">
+<span class="bg-blue-100 text-blue-700 text-xs font-bold px-2 py-1 rounded">Operaciones Mixtas</span>
+<span class="text-slate-400 text-sm">#1</span>
+</div>
+<p class="font-mono text-lg mb-4">0.3 + 4 = ?</p>
+<button onclick="toggleAnswer('ans1')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Ver Respuesta</button>
+<div id="ans1" class="hidden mt-3 p-3 bg-green-50 rounded-lg border border-green-200">
+<p class="font-mono text-green-800">= 3/10 + 40/10 = <strong>43/10</strong></p>
+</div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+<div class="flex justify-between items-start mb-3">
+<span class="bg-purple-100 text-purple-700 text-xs font-bold px-2 py-1 rounded">Potencias</span>
+<span class="text-slate-400 text-sm">#2</span>
+</div>
+<p class="font-mono text-lg mb-4">(2³)² · 2⁴ = ?</p>
+<button onclick="toggleAnswer('ans2')" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Ver Respuesta</button>
+<div id="ans2" class="hidden mt-3 p-3 bg-green-50 rounded-lg border border-green-200">
+<p class="font-mono text-green-800">= 2⁶ · 2⁴ = <strong>2¹⁰ = 1024</strong></p>
+</div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+<div class="flex justify-between items-start mb-3">
+<span class="bg-orange-100 text-orange-700 text-xs font-bold px-2 py-1 rounded">Raíces</span>
+<span class="text-slate-400 text-sm">#3</span>
+</div>
+<p class="font-mono text-lg mb-4">√12 + √27 = ?</p>
+<button onclick="toggleAnswer('ans3')" class="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Ver Respuesta</button>
+<div id="ans3" class="hidden mt-3 p-3 bg-green-50 rounded-lg border border-green-200">
+<p class="font-mono text-green-800">= 2√3 + 3√3 = <strong>5√3</strong></p>
+</div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+<div class="flex justify-between items-start mb-3">
+<span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">Racionalización</span>
+<span class="text-slate-400 text-sm">#4</span>
+</div>
+<p class="font-mono text-lg mb-4">3/√6 = ?</p>
+<button onclick="toggleAnswer('ans4')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Ver Respuesta</button>
+<div id="ans4" class="hidden mt-3 p-3 bg-green-50 rounded-lg border border-green-200">
+<p class="font-mono text-green-800">= 3√6/6 = <strong>√6/2</strong></p>
+</div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+<div class="flex justify-between items-start mb-3">
+<span class="bg-red-100 text-red-700 text-xs font-bold px-2 py-1 rounded">Mixta Compleja</span>
+<span class="text-slate-400 text-sm">#5</span>
+</div>
+<p class="font-mono text-lg mb-4">1/2 · 4 + (3 - 1/2)² = ?</p>
+<button onclick="toggleAnswer('ans5')" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Ver Respuesta</button>
+<div id="ans5" class="hidden mt-3 p-3 bg-green-50 rounded-lg border border-green-200">
+<p class="font-mono text-green-800">= 2 + (5/2)² = 2 + 25/4 = <strong>33/4</strong></p>
+</div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+<div class="flex justify-between items-start mb-3">
+<span class="bg-blue-100 text-blue-700 text-xs font-bold px-2 py-1 rounded">Lenguaje</span>
+<span class="text-slate-400 text-sm">#6</span>
+</div>
+<p class="text-lg mb-4">"El triple del sucesor de n, disminuido en 2"</p>
+<button onclick="toggleAnswer('ans6')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">Ver Respuesta</button>
+<div id="ans6" class="hidden mt-3 p-3 bg-green-50 rounded-lg border border-green-200">
+<p class="font-mono text-green-800">= <strong>3(n+1) - 2 = 3n + 1</strong></p>
+</div>
+</div>
+</div>
+
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+<h3 class="font-bold text-xl mb-4"><i class="fas fa-clipboard-check text-green-500 mr-2"></i>Checklist Final para la Prueba</h3>
+<div class="grid md:grid-cols-2 gap-3">
+<label class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg cursor-pointer hover:bg-slate-100 transition-colors">
+<input type="checkbox" class="w-5 h-5 text-blue-600 rounded"> Dominar suma/resta de fracciones
+</label>
+<label class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg cursor-pointer hover:bg-slate-100 transition-colors">
+<input type="checkbox" class="w-5 h-5 text-blue-600 rounded"> Saber convertir decimales a fracciones
+</label>
+<label class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg cursor-pointer hover:bg-slate-100 transition-colors">
+<input type="checkbox" class="w-5 h-5 text-blue-600 rounded"> Conocer las 6 propiedades de potencias
+</label>
+<label class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg cursor-pointer hover:bg-slate-100 transition-colors">
+<input type="checkbox" class="w-5 h-5 text-blue-600 rounded"> Saber simplificar raíces
+</label>
+<label class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg cursor-pointer hover:bg-slate-100 transition-colors">
+<input type="checkbox" class="w-5 h-5 text-blue-600 rounded"> Identificar raíces semejantes
+</label>
+<label class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg cursor-pointer hover:bg-slate-100 transition-colors">
+<input type="checkbox" class="w-5 h-5 text-blue-600 rounded"> Recordar el orden de operaciones
+</label>
+<label class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg cursor-pointer hover:bg-slate-100 transition-colors">
+<input type="checkbox" class="w-5 h-5 text-blue-600 rounded"> Saber racionalizar los 3 casos
+</label>
+<label class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg cursor-pointer hover:bg-slate-100 transition-colors">
+<input type="checkbox" class="w-5 h-5 text-blue-600 rounded"> Traducir lenguaje natural a álgebra
+</label>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="bg-slate-900 text-slate-300 py-8 px-4 mt-12">
+<div class="max-w-6xl mx-auto text-center">
+<p class="text-lg font-semibold mb-2">¡Mucho éxito en tu prueba! 🎯</p>
+<p class="text-sm text-slate-400">Repasa esta guía la noche anterior y duerme bien.</p>
+</div>
+</footer>
+
+<script>
+function showSection(sectionId) {
+    // Hide all sections
+    document.querySelectorAll('section').forEach(section => {
+        section.classList.remove('visible-section');
+        section.classList.add('hidden-section');
+    });
+    // Show target section
+    document.getElementById(sectionId).classList.remove('hidden-section');
+    document.getElementById(sectionId).classList.add('visible-section');
+
+    // Update nav buttons
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        if(btn.dataset.section === sectionId) {
+            btn.classList.remove('tab-inactive');
+            btn.classList.add('tab-active');
+        } else {
+            btn.classList.remove('tab-active');
+            btn.classList.add('tab-inactive');
+        }
+    });
+    window.scrollTo(0, 0);
+}
+
+function toggleAnswer(id) {
+    const el = document.getElementById(id);
+    if(el.classList.contains('hidden')) {
+        el.classList.remove('hidden');
+    } else {
+        el.classList.add('hidden');
+    }
+}
+</script>
+
+</body>
+</html>
